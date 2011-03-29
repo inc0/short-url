@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+	<meta charset="utf-8">
+	<title>Short Url</title>
+</head>
+<body>
+	{% if form.errors %}
+	<p>{{ form.errors }}</p>
+	{% endif %}
+	<form action method="post">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="Short it!" />
+		
+	</form>
+	<br />
+	{% if url %}
+	original url: <a href="{{ url.original_url }}">{{ url.original_url }}</a><br />
+	shorten url: <a href="/{{ url.suffix }}">{{ url }}</a>
+	{% endif %}
+</body>
